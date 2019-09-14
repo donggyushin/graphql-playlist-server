@@ -26,6 +26,10 @@ var RootQuery = new graphql_1.GraphQLObjectType({
                 id: { type: graphql_1.GraphQLID }
             },
             resolve: AuthorResolvers_1.authorResolver
+        },
+        books: {
+            type: new graphql_1.GraphQLList(BookType_1.default),
+            resolve: BookResolvers_1.allBookResolver
         }
     }
 });

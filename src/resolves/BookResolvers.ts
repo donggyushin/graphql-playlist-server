@@ -3,6 +3,11 @@ import Books from '../sampleData/books'
 import Authors from '../sampleData/author';
 import _ from 'lodash'
 
+export const allBookResolver = (parent, args): BookResponseType[] => {
+
+    return Books
+}
+
 export const bookResolver = (parent, args): BookResponseType => {
     // code to get data from db / other sources
     const { id } = args;
