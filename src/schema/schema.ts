@@ -2,7 +2,7 @@ import { GraphQLObjectType, GraphQLSchema, GraphQLID, GraphQLList } from 'graphq
 import BookType from '../graphqlObjectTypes/BookType';
 import AuthorType from '../graphqlObjectTypes/AuthorType'
 import { bookResolver, allBookResolver } from '../resolves/BookResolvers'
-import { authorResolver } from '../resolves/AuthorResolvers';
+import { authorResolver, allAuthorsResolver } from '../resolves/AuthorResolvers';
 
 
 
@@ -29,6 +29,10 @@ const RootQuery = new GraphQLObjectType({
         books: {
             type: new GraphQLList(BookType),
             resolve: allBookResolver
+        },
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve: allAuthorsResolver
         }
     }
 })

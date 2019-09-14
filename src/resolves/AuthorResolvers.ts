@@ -3,6 +3,10 @@ import Authors from '../sampleData/author'
 import _ from 'lodash'
 import Books from '../sampleData/books';
 
+export const allAuthorsResolver = (parent, args): AuthorResponseType[] => {
+    return Authors;
+}
+
 export const authorResolver = (parent, args): AuthorResponseType => {
     const { id } = args;
     const authors = _.find(Authors, { id })

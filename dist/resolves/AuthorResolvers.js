@@ -6,6 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var author_1 = __importDefault(require("../sampleData/author"));
 var lodash_1 = __importDefault(require("lodash"));
 var books_1 = __importDefault(require("../sampleData/books"));
+exports.allAuthorsResolver = function (parent, args) {
+    return author_1.default;
+};
 exports.authorResolver = function (parent, args) {
     var id = args.id;
     var authors = lodash_1.default.find(author_1.default, { id: id });
