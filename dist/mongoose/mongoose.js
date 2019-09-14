@@ -8,3 +8,4 @@ mongoose_1.default.connect('mongodb://localhost/graphql-playlist', { useUnifiedT
 var db = mongoose_1.default.connection;
 db.on('error', console.error.bind(console, "connection error:"));
 db.once('open', function () { return console.log("Mongoose database connected!"); });
+exports.default = mongoose_1.default;

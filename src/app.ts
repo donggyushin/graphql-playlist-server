@@ -3,6 +3,7 @@ import graphqlHttp from 'express-graphql';
 import schema from './schema/schema'
 import expressPlayground from 'graphql-playground-middleware-express'
 import './mongoose/mongoose'
+import './models'
 
 const app: express.Application = express();
 const PORT: number = 4000;
