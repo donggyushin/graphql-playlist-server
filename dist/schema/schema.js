@@ -1,33 +1,31 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_1 = require("graphql");
-var BookType = new graphql_1.GraphQLObjectType({
-    name: 'Book',
-    fields: function () { return ({
-        id: { type: graphql_1.GraphQLString },
-        name: { type: graphql_1.GraphQLString },
-        genre: { type: graphql_1.GraphQLString }
-    }); }
-});
+var BookType_1 = __importDefault(require("../graphqlObjectTypes/BookType"));
+var AuthorType_1 = __importDefault(require("../graphqlObjectTypes/AuthorType"));
+var BookResolvers_1 = require("../resolves/BookResolvers");
+var AuthorResolvers_1 = require("../resolves/AuthorResolvers");
 var RootQuery = new graphql_1.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         book: {
-            type: BookType,
+            type: BookType_1.default,
             args: {
                 id: {
-                    type: graphql_1.GraphQLString
+                    type: graphql_1.GraphQLID
                 }
             },
-            resolve: function (parent, args) {
-                // code to get data from db / other sources
-                var id = args.id;
-                return {
-                    id: id,
-                    name: 'test',
-                    genre: 'test'
-                };
-            }
+            resolve: BookResolvers_1.bookResolver
+        },
+        author: {
+            type: AuthorType_1.default,
+            args: {
+                id: { type: graphql_1.GraphQLID }
+            },
+            resolve: AuthorResolvers_1.authorResolver
         }
     }
 });
