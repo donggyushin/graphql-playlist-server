@@ -7,6 +7,7 @@ var express_1 = __importDefault(require("express"));
 var express_graphql_1 = __importDefault(require("express-graphql"));
 var schema_1 = __importDefault(require("./schema/schema"));
 var graphql_playground_middleware_express_1 = __importDefault(require("graphql-playground-middleware-express"));
+require("./mongoose/mongoose");
 var app = express_1.default();
 var PORT = 4000;
 app.use('/graphql', express_graphql_1.default({
