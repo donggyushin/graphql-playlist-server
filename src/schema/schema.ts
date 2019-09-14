@@ -1,14 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLSchema } from 'graphql'
-import { BookResponseType } from '../types/types';
+import { GraphQLObjectType, GraphQLSchema, GraphQLID } from 'graphql'
+import BookType from '../graphqlObjectTypes/BookType';
+import AuthorType from '../graphqlObjectTypes/AuthorType'
+import { bookResolver } from '../resolves/BookResolvers'
+import { authorResolver } from '../resolves/AuthorResolvers';
 
-const BookType = new GraphQLObjectType({
-    name: 'Book',
-    fields: () => ({
-        id: { type: GraphQLString },
-        name: { type: GraphQLString },
-        genre: { type: GraphQLString }
-    })
-})
 
 
 
@@ -19,18 +14,17 @@ const RootQuery = new GraphQLObjectType({
             type: BookType,
             args: {
                 id: {
-                    type: GraphQLString
+                    type: GraphQLID
                 }
             },
-            resolve(parent, args): BookResponseType {
-                // code to get data from db / other sources
-                const { id } = args;
-                return {
-                    id,
-                    name: 'test',
-                    genre: 'test'
-                }
-            }
+            resolve: bookResolver
+        },
+        author: {
+            type: AuthorType,
+            args: {
+                id: { type: GraphQLID }
+            },
+            resolve: authorResolver
         }
     }
 })

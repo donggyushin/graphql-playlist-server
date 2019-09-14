@@ -3,3 +3,9 @@ export interface BookResponseType {
     name: string;
     genre: string;
 }
+
+export interface AuthorResponseType {
+    id: string;
+    name: string;
+    age: number;
+}
