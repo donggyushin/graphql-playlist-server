@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLInt, graphqlSync } from "graphql";
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull } from "graphql";
 import AuthorType from "../graphqlObjectTypes/AuthorType";
 import { addAuthorMutation } from "./authorMutations";
 import BookType from "../graphqlObjectTypes/BookType";
@@ -11,16 +11,16 @@ const Mutation = new GraphQLObjectType({
         addAuthor: {
             type: AuthorType,
             args: {
-                name: { type: GraphQLString },
-                age: { type: GraphQLInt }
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) }
             },
             resolve: addAuthorMutation
         },
         addBook: {
             type: BookType,
             args: {
-                name: { type: GraphQLString },
-                genre: { type: GraphQLString },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                genre: { type: new GraphQLNonNull(GraphQLString) },
                 authorId: { type: GraphQLString }
             },
             resolve: addBookMutation
