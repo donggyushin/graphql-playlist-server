@@ -3,6 +3,7 @@ import BookType from '../graphqlObjectTypes/BookType';
 import AuthorType from '../graphqlObjectTypes/AuthorType'
 import { bookResolver, allBookResolver } from '../resolves/BookResolvers'
 import { authorResolver, allAuthorsResolver } from '../resolves/AuthorResolvers';
+import Mutation from '../mutations/rootMutation';
 
 
 
@@ -38,5 +39,6 @@ const RootQuery = new GraphQLObjectType({
 })
 
 export default new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutation
 })

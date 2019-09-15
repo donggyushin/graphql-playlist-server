@@ -2,21 +2,38 @@ import { AuthorResponseType, BookResponseType } from '../types/types'
 import Authors from '../sampleData/author'
 import _ from 'lodash'
 import Books from '../sampleData/books';
+import Author from '../models/author';
+import Book from '../models/book';
 
-export const allAuthorsResolver = (parent, args): AuthorResponseType[] => {
-    return Authors;
+export const allAuthorsResolver = async (parent, args): Promise<AuthorResponseType[]> => {
+
+    try {
+        const allAuthors = await Author.find()
+        return allAuthors;
+
+    } catch (err) {
+        return null
+    }
+
 }
 
-export const authorResolver = (parent, args): AuthorResponseType => {
+export const authorResolver = async (parent, args): Promise<AuthorResponseType> => {
     const { id } = args;
-    const authors = _.find(Authors, { id })
-    return authors
+    try {
+        const author = await Author.findById(id)
+        return author
+
+    } catch (err) {
+        return null
+    }
 }
 
-export const booksResolverInAuthorType = (parent, args): [BookResponseType] => {
+export const booksResolverInAuthorType = async (parent, args): Promise<BookResponseType[]> => {
     const { id } = parent;
-    const books = _.filter(Books, {
-        authorId: id
-    })
-    return books
+    try {
+        const books = await Book.find({ authorId: id })
+        return books
+    } catch (err) {
+        return null
+    }
 }

@@ -8,6 +8,7 @@ var BookType_1 = __importDefault(require("../graphqlObjectTypes/BookType"));
 var AuthorType_1 = __importDefault(require("../graphqlObjectTypes/AuthorType"));
 var BookResolvers_1 = require("../resolves/BookResolvers");
 var AuthorResolvers_1 = require("../resolves/AuthorResolvers");
+var rootMutation_1 = __importDefault(require("../mutations/rootMutation"));
 var RootQuery = new graphql_1.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -38,5 +39,6 @@ var RootQuery = new graphql_1.GraphQLObjectType({
     }
 });
 exports.default = new graphql_1.GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: rootMutation_1.default
 });
