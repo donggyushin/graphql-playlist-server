@@ -14,16 +14,16 @@ var Mutation = new graphql_1.GraphQLObjectType({
         addAuthor: {
             type: AuthorType_1.default,
             args: {
-                name: { type: graphql_1.GraphQLString },
-                age: { type: graphql_1.GraphQLInt }
+                name: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString) },
+                age: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLInt) }
             },
             resolve: authorMutations_1.addAuthorMutation
         },
         addBook: {
             type: BookType_1.default,
             args: {
-                name: { type: graphql_1.GraphQLString },
-                genre: { type: graphql_1.GraphQLString },
+                name: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString) },
+                genre: { type: new graphql_1.GraphQLNonNull(graphql_1.GraphQLString) },
                 authorId: { type: graphql_1.GraphQLString }
             },
             resolve: bookMutations_1.addBookMutation
